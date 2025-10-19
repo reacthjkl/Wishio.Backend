@@ -5,13 +5,13 @@ namespace Wishio.Persistance.Entities;
 public class Wishlist
 {
   // Basic Info
-  public Guid Id { get; set; }
+  public Guid Id { get; set; } = Guid.NewGuid();
   public string Name { get; set; } = null!;
   public string? Description { get; set; }
 
   // Picture
   public Guid? PictureId { get; set; }
-  public Picture? Picture { get; set; } = null!;
+  public Picture? Picture { get; set; }
 
   // Theme
   public Theme Theme { get; set; }
