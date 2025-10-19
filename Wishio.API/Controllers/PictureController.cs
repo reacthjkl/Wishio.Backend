@@ -7,5 +7,33 @@ namespace Wishio.API.Controllers;
 [Route("api/[controller]")]
 public class PictureController(IPictureService pictureService) : ControllerBase
 {
+  [HttpGet("{id:guid}")]
+  public async Task<IActionResult> Get(Guid id)
+  {
+    try
+    {
+      var picture = await pictureService.Get(id);
 
+      return File(picture.BinaryData, picture.ContentType, picture.FileName);
+    }
+    catch (Exception ex)
+    {
+      return BadRequest(ex.Message);
+    }
+  }
+
+  [HttpPost]
+  public async Task<IActionResult> Create([FromForm] IFormFile file)
+  {
+    try
+    {
+
+      var result = await pictureService.Create(file);
+      return Ok(result);
+    }
+    catch (Exception ex)
+    {
+      return BadRequest(ex.Message);
+    }
+  }
 }
