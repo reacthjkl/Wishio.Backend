@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Wishio.Business.Interfaces;
+using Wishio.Contract.Dto.Picture;
 
 namespace Wishio.API.Controllers;
 
@@ -23,17 +24,18 @@ public class PictureController(IPictureService pictureService) : ControllerBase
   }
 
   [HttpPost]
-  public async Task<IActionResult> Create([FromForm] IFormFile file, CancellationToken ct = default)
+  public async Task<IActionResult> Create([FromForm] PictureRequestDto picture, CancellationToken ct = default)
   {
-    try
     {
-
-      var result = await pictureService.Create(file, ct);
-      return Ok(result);
-    }
-    catch (Exception ex)
-    {
-      return BadRequest(ex.Message);
+      try
+      {
+        var result = await pictureService.Create(picture, ct);
+        return Ok(result);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
     }
   }
 }
