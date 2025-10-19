@@ -1,7 +1,6 @@
 using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Wishio.Business.Interfaces;
-using Wishio.Contract.Dto;
+using Wishio.Contract.Dto.Picture;
 using Wishio.Persistance.Entities;
 using Wishio.Persistance.Interfaces;
 
@@ -17,9 +16,9 @@ public class PictureService(IPictureRepository pictureRepository, IMapper mapper
     return mapper.Map<PictureResponseDto>(picture);
   }
 
-  public async Task<PictureResponseDto> Create(IFormFile file, CancellationToken ct = default)
+  public async Task<PictureResponseDto> Create(PictureRequestDto picture, CancellationToken ct = default)
   {
-    var entity = mapper.Map<Picture>(file);
+    var entity = mapper.Map<Picture>(picture);
 
     var created = await pictureRepository.Create(entity, ct);
 
