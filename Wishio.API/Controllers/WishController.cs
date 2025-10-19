@@ -9,7 +9,7 @@ namespace Wishio.API.Controllers;
 [Route("api/[controller]")]
 public class WishController(IWishService wishService) : ControllerBase
 {
-  [HttpGet]
+  [HttpGet("{id:guid}")]
   public async Task<ActionResult<ResponseDto<WishResponseDto>>> Get(Guid id, CancellationToken ct = default)
   {
     try
@@ -23,7 +23,7 @@ public class WishController(IWishService wishService) : ControllerBase
     }
   }
 
-  [HttpGet("by-wishlist")]
+  [HttpGet("by-wishlist/{wishlistId:guid}")]
   public async Task<ActionResult<ResponseDto<List<WishResponseDto>>>> GetByWithlistId(Guid wishlistId, CancellationToken ct = default)
   {
     try
@@ -51,12 +51,13 @@ public class WishController(IWishService wishService) : ControllerBase
     }
   }
 
-  [HttpPut]
-  public async Task<ActionResult<ResponseDto<WishResponseDto>>> Update([FromBody] WishUpdateRequestDto wish, CancellationToken ct = default)
+  //todo: allow only reserve = true update
+  [HttpPut("{id:guid}")]
+  public async Task<ActionResult<ResponseDto<WishResponseDto>>> Update(Guid id, [FromBody] WishUpdateRequestDto wish, CancellationToken ct = default)
   {
     try
     {
-      var updated = await wishService.Update(wish, ct);
+      var updated = await wishService.Update(id, wish, ct);
       return Ok(ResponseDto<WishResponseDto>.Success(updated));
     }
     catch (Exception e)

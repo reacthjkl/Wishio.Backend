@@ -9,7 +9,7 @@ namespace Wishio.API.Controllers;
 [Route("api/[controller]")]
 public class WishlistController(IWishlistService wishlistService) : ControllerBase
 {
-  [HttpGet]
+  [HttpGet("{id:guid}")]
   public async Task<ActionResult<ResponseDto<WishlistResponseDto>>> Get(Guid id, CancellationToken ct = default)
   {
     try
