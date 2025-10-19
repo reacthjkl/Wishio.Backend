@@ -18,7 +18,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Setup entity framework 
-builder.Services.AddDbContext<WishioContext>();
+builder.Services.AddDbContext<WishioContext>((options) => options.EnableSensitiveDataLogging(true));
 
 // Register application services
 builder.Services.AddScoped<IWishlistService, WishlistService>();
