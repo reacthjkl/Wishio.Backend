@@ -6,6 +6,8 @@ namespace Wishio.Persistance;
 public class WishioContext : DbContext
 {
   public virtual DbSet<Wishlist> Wishlists { get; set; }
+  public virtual DbSet<Wish> Wishes { get; set; }
+  public virtual DbSet<Picture> Pictures { get; set; }
 
   public string DbPath { get; }
 
@@ -22,11 +24,57 @@ public class WishioContext : DbContext
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
     modelBuilder.Entity<Wishlist>(entity =>
-        {
-          entity.HasKey(e => e.Id);
+    {
+      entity.HasKey(e => e.Id);
 
-          entity.Property(e => e.Id).HasDefaultValueSql("newid()");
-        });
+      entity.Property(e => e.Id).HasDefaultValueSql("newid()");
+
+      entity.Property(e => e.Name).IsRequired().HasMaxLength(255);
+      entity.Property(e => e.Description).HasMaxLength(2000);
+
+      entity.HasMany(e => e.Wishes)
+            .WithOne(e => e.Wishlist)
+            .HasForeignKey(e => e.WishlistId)
+            .IsRequired(true)
+            .OnDelete(DeleteBehavior.Cascade);
+    });
+
+    modelBuilder.Entity<Wish>(entity =>
+    {
+      entity.HasKey(e => e.Id);
+
+      entity.Property(e => e.Id).HasDefaultValueSql("newid()");
+
+      entity.Property(e => e.Name).IsRequired().HasMaxLength(255);
+      entity.Property(e => e.Description).HasMaxLength(2000);
+      entity.Property(e => e.Link).HasMaxLength(2000);
+
+    });
+
+    modelBuilder.Entity<Picture>(entity =>
+    {
+      entity.HasKey(e => e.Id);
+
+      entity.Property(e => e.Id).HasDefaultValueSql("newid()");
+
+      entity.Property(e => e.BinaryData)
+        .IsRequired(true);
+
+      entity.Property(e => e.FileName)
+      .HasMaxLength(255);
+
+      entity.Property(e => e.ContentType)
+        .HasMaxLength(100);
+
+      entity.Property(e => e.FileName)
+       .HasMaxLength(255);
+
+      entity.Property(e => e.ContentType)
+        .HasMaxLength(100);
+
+      entity.Property(e => e.FileSize)
+        .IsRequired();
+    });
   }
 
 }

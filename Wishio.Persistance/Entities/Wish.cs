@@ -1,22 +1,18 @@
-using Wishio.Contract.Enums;
-
 namespace Wishio.Persistance.Entities;
 
-public class Wishlist
+public class Wish
 {
   // Basic Info
   public Guid Id { get; set; }
   public string Name { get; set; } = null!;
   public string? Description { get; set; }
+  public string? Link { get; set; }
 
   // Picture
   public Guid? PictureId { get; set; }
   public Picture? Picture { get; set; } = null!;
 
-  // Theme
-  public Theme? Theme { get; set; }
-  public Guid? CustomThemePictureId { get; set; }
-  public Picture? CustomThemePicture { get; set; }
-
-  public virtual ICollection<Wish> Wishes { get; set; } = [];
+  // Connection to a Wishlist entity
+  public Guid WishlistId { get; set; }
+  public Wishlist Wishlist { get; set; } = null!;
 }
