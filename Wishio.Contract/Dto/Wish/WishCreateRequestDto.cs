@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Wishio.Contract.Dto.Wish;
 
-public class WishRequestDto
+public class WishCreateRequestDto
 {
   [Required]
   [MaxLength(255)]

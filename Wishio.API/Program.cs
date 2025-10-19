@@ -22,9 +22,13 @@ builder.Services.AddDbContext<WishioContext>();
 
 // Register application services
 builder.Services.AddScoped<IWishlistService, WishlistService>();
+builder.Services.AddScoped<IWishService, WishService>();
+builder.Services.AddScoped<IPictureService, PictureService>();
 
 // Register repositories
 builder.Services.AddScoped<IWishlistRepository, WishlistRepository>();
+builder.Services.AddScoped<IWishRepository, WishRepository>();
+builder.Services.AddScoped<IPictureRepository, PictureRepository>();
 
 var app = builder.Build();
 

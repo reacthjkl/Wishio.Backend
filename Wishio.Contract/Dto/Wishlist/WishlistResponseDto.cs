@@ -6,6 +6,7 @@ namespace Wishio.Contract.Dto.Wishlist;
 
 public class WishlistResponseDto
 {
+  [Required]
   public Guid Id { get; set; }
 
   [Required]

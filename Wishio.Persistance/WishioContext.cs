@@ -48,6 +48,7 @@ public class WishioContext : DbContext
       entity.Property(e => e.Name).IsRequired().HasMaxLength(255);
       entity.Property(e => e.Description).HasMaxLength(2000);
       entity.Property(e => e.Link).HasMaxLength(2000);
+      entity.Property(e => e.IsReserved).HasDefaultValue(false);
 
     });
 

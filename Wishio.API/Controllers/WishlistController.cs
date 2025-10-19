@@ -10,12 +10,26 @@ namespace Wishio.API.Controllers;
 public class WishlistController(IWishlistService wishlistService) : ControllerBase
 {
   [HttpGet]
-  public async Task<ActionResult<ResponseDto<WishlistResponseDto>>> GetWishList(Guid id)
+  public async Task<ActionResult<ResponseDto<WishlistResponseDto>>> Get(Guid id)
   {
     try
     {
-      var wishlist = await wishlistService.GetByIdAsync(id);
+      var wishlist = await wishlistService.Get(id);
       return Ok(ResponseDto<WishlistResponseDto>.Success(wishlist));
+    }
+    catch (Exception e)
+    {
+      return BadRequest(ResponseDto<EmptyDto>.Fail(e.Message));
+    }
+  }
+
+  [HttpPost]
+  public async Task<ActionResult<ResponseDto<WishlistResponseDto>>> Create([FromBody] WishlistRequestDto wishlist)
+  {
+    try
+    {
+      var created = await wishlistService.Create(wishlist);
+      return Ok(ResponseDto<WishlistResponseDto>.Success(created));
     }
     catch (Exception e)
     {

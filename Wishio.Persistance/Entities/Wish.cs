@@ -7,6 +7,7 @@ public class Wish
   public string Name { get; set; } = null!;
   public string? Description { get; set; }
   public string? Link { get; set; }
+  public bool IsReserved { get; set; }
 
   // Picture
   public Guid? PictureId { get; set; }

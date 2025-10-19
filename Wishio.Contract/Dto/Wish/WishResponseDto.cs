@@ -4,6 +4,7 @@ namespace Wishio.Contract.Dto.Wish;
 
 public class WishResponseDto
 {
+  [Required]
   public Guid Id { get; set; }
 
   [Required]
@@ -15,6 +16,9 @@ public class WishResponseDto
 
   [MaxLength(2000)]
   public string? Link { get; set; }
+
+  [Required]
+  public bool IsReserved { get; set; }
 
   [Required]
   public string WishlistId { get; set; } = null!;
