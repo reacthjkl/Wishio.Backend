@@ -9,17 +9,23 @@ public class WishioContext : DbContext
   public virtual DbSet<Wish> Wishes { get; set; }
   public virtual DbSet<Picture> Pictures { get; set; }
 
-  public string DbPath { get; }
-
   public WishioContext()
+  {
+  }
+
+  public WishioContext(DbContextOptions<WishioContext> options) : base(options)
+  {
+  }
+
+  private static string GetPath()
   {
     var folder = Environment.SpecialFolder.LocalApplicationData;
     var path = Environment.GetFolderPath(folder);
-    DbPath = Path.Join(path, "wishio.db");
+    return Path.Join(path, "wishio.db");
   }
 
   protected override void OnConfiguring(DbContextOptionsBuilder options)
-    => options.UseSqlite($"Data Source={DbPath}");
+    => options.UseSqlite($"Data Source={GetPath()}");
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
@@ -27,7 +33,7 @@ public class WishioContext : DbContext
     {
       entity.HasKey(e => e.Id);
 
-      entity.Property(e => e.Id).HasDefaultValueSql("newid()");
+      entity.Property(e => e.Id);
 
       entity.Property(e => e.Name).IsRequired().HasMaxLength(255);
       entity.Property(e => e.Description).HasMaxLength(2000);
@@ -43,7 +49,7 @@ public class WishioContext : DbContext
     {
       entity.HasKey(e => e.Id);
 
-      entity.Property(e => e.Id).HasDefaultValueSql("newid()");
+      entity.Property(e => e.Id);
 
       entity.Property(e => e.Name).IsRequired().HasMaxLength(255);
       entity.Property(e => e.Description).HasMaxLength(2000);
@@ -56,7 +62,7 @@ public class WishioContext : DbContext
     {
       entity.HasKey(e => e.Id);
 
-      entity.Property(e => e.Id).HasDefaultValueSql("newid()");
+      entity.Property(e => e.Id);
 
       entity.Property(e => e.BinaryData)
         .IsRequired();
