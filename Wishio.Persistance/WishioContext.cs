@@ -59,18 +59,14 @@ public class WishioContext : DbContext
       entity.Property(e => e.Id).HasDefaultValueSql("newid()");
 
       entity.Property(e => e.BinaryData)
-        .IsRequired(true);
+        .IsRequired();
 
       entity.Property(e => e.FileName)
-      .HasMaxLength(255);
-
-      entity.Property(e => e.ContentType)
-        .HasMaxLength(100);
-
-      entity.Property(e => e.FileName)
+        .IsRequired()
        .HasMaxLength(255);
 
       entity.Property(e => e.ContentType)
+        .IsRequired()
         .HasMaxLength(100);
 
       entity.Property(e => e.FileSize)

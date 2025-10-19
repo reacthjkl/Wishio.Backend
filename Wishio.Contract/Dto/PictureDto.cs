@@ -1,6 +1,6 @@
-namespace Wishio.Persistance.Entities;
+namespace Wishio.Contract.Dto;
 
-public class Picture
+public class PictureDto
 {
   public Guid Id { get; set; }
   public byte[] BinaryData { get; set; } = [];
