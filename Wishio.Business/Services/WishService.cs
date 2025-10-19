@@ -32,9 +32,9 @@ public class WishService(IWishRepository wishRepository, IMapper mapper) : IWish
     return mapper.Map<WishResponseDto>(created);
   }
 
-  public async Task<WishResponseDto> Update(WishUpdateRequestDto wish, CancellationToken ct = default)
+  public async Task<WishResponseDto> Update(Guid id, WishUpdateRequestDto wish, CancellationToken ct = default)
   {
-    var entity = await wishRepository.Get(wish.Id, ct)
+    var entity = await wishRepository.Get(id, ct)
       ?? throw new KeyNotFoundException("Wish not found");
 
     mapper.Map(wish, entity);
