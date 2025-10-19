@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Wishio",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
