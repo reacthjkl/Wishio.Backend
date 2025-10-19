@@ -1,22 +1,26 @@
+using System.ComponentModel.DataAnnotations;
+using Wishio.Contract.Dto.Wish;
 using Wishio.Contract.Enums;
 
-namespace Wishio.Persistance.Entities;
+namespace Wishio.Contract.Dto.Wishlist;
 
-public class Wishlist
+public class WishlistResponseDto
 {
-  // Basic Info
   public Guid Id { get; set; }
+
+  [Required]
+  [MaxLength(255)]
   public string Name { get; set; } = null!;
+
+  [MaxLength(2000)]
   public string? Description { get; set; }
 
-  // Picture
   public Guid? PictureId { get; set; }
-  public Picture? Picture { get; set; } = null!;
 
-  // Theme
+  [Required]
   public Theme Theme { get; set; }
-  public Guid? CustomThemePictureId { get; set; }
-  public Picture? CustomThemePicture { get; set; }
 
-  public virtual ICollection<Wish> Wishes { get; set; } = [];
+  public Guid? CustomThemePictureId { get; set; }
+
+  public List<WishResponseDto> Wishes { get; set; } = [];
 }

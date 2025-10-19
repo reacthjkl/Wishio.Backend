@@ -10,7 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddAutoMapper(cfg => { },
-    typeof(WishlistProfile));
+    typeof(WishlistProfile),
+    typeof(WishProfile));
 
 // Swagger configuration
 builder.Services.AddEndpointsApiExplorer();

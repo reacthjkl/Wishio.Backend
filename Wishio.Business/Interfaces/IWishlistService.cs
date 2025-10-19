@@ -1,8 +1,8 @@
-using Wishio.Contract.Dto;
+using Wishio.Contract.Dto.Wishlist;
 
 namespace Wishio.Business.Interfaces;
 
 public interface IWishlistService
 {
-  public Task<WishlistDto> GetByIdAsync(Guid id);
+  public Task<WishlistResponseDto> GetByIdAsync(Guid id);
 }
