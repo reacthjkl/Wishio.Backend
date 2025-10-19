@@ -8,11 +8,11 @@ namespace Wishio.API.Controllers;
 public class PictureController(IPictureService pictureService) : ControllerBase
 {
   [HttpGet("{id:guid}")]
-  public async Task<IActionResult> Get(Guid id)
+  public async Task<IActionResult> Get(Guid id, CancellationToken ct = default)
   {
     try
     {
-      var picture = await pictureService.Get(id);
+      var picture = await pictureService.Get(id, ct);
 
       return File(picture.BinaryData, picture.ContentType, picture.FileName);
     }
@@ -23,12 +23,12 @@ public class PictureController(IPictureService pictureService) : ControllerBase
   }
 
   [HttpPost]
-  public async Task<IActionResult> Create([FromForm] IFormFile file)
+  public async Task<IActionResult> Create([FromForm] IFormFile file, CancellationToken ct = default)
   {
     try
     {
 
-      var result = await pictureService.Create(file);
+      var result = await pictureService.Create(file, ct);
       return Ok(result);
     }
     catch (Exception ex)

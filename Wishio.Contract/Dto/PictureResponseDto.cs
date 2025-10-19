@@ -1,6 +1,6 @@
 namespace Wishio.Contract.Dto;
 
-public class PictureDto
+public class PictureResponseDto
 {
   public Guid Id { get; set; }
   public byte[] BinaryData { get; set; } = [];

@@ -10,11 +10,11 @@ namespace Wishio.API.Controllers;
 public class WishController(IWishService wishService) : ControllerBase
 {
   [HttpGet]
-  public async Task<ActionResult<ResponseDto<WishResponseDto>>> Get(Guid id)
+  public async Task<ActionResult<ResponseDto<WishResponseDto>>> Get(Guid id, CancellationToken ct = default)
   {
     try
     {
-      var wishlist = await wishService.Get(id);
+      var wishlist = await wishService.Get(id, ct);
       return Ok(ResponseDto<WishResponseDto>.Success(wishlist));
     }
     catch (Exception e)
@@ -24,11 +24,11 @@ public class WishController(IWishService wishService) : ControllerBase
   }
 
   [HttpGet("by-wishlist")]
-  public async Task<ActionResult<ResponseDto<List<WishResponseDto>>>> GetByWithlistId(Guid wishlistId)
+  public async Task<ActionResult<ResponseDto<List<WishResponseDto>>>> GetByWithlistId(Guid wishlistId, CancellationToken ct = default)
   {
     try
     {
-      var wishlists = await wishService.GetByWishlistId(wishlistId);
+      var wishlists = await wishService.GetByWishlistId(wishlistId, ct);
       return Ok(ResponseDto<WishResponseDto>.SuccessList(wishlists));
     }
     catch (Exception e)
@@ -38,11 +38,11 @@ public class WishController(IWishService wishService) : ControllerBase
   }
 
   [HttpPost]
-  public async Task<ActionResult<ResponseDto<WishResponseDto>>> Create([FromBody] WishCreateRequestDto wish)
+  public async Task<ActionResult<ResponseDto<WishResponseDto>>> Create([FromBody] WishCreateRequestDto wish, CancellationToken ct = default)
   {
     try
     {
-      var created = await wishService.Create(wish);
+      var created = await wishService.Create(wish, ct);
       return Ok(ResponseDto<WishResponseDto>.Success(created));
     }
     catch (Exception e)
@@ -52,11 +52,11 @@ public class WishController(IWishService wishService) : ControllerBase
   }
 
   [HttpPut]
-  public async Task<ActionResult<ResponseDto<WishResponseDto>>> Update([FromBody] WishUpdateRequestDto wish)
+  public async Task<ActionResult<ResponseDto<WishResponseDto>>> Update([FromBody] WishUpdateRequestDto wish, CancellationToken ct = default)
   {
     try
     {
-      var updated = await wishService.Update(wish);
+      var updated = await wishService.Update(wish, ct);
       return Ok(ResponseDto<WishResponseDto>.Success(updated));
     }
     catch (Exception e)

@@ -4,8 +4,8 @@ namespace Wishio.Business.Interfaces;
 
 public interface IWishService
 {
-  Task<WishResponseDto> Get(Guid id);
-  Task<List<WishResponseDto>> GetByWishlistId(Guid wishlistId);
-  Task<WishResponseDto> Create(WishCreateRequestDto wish);
-  Task<WishResponseDto> Update(WishUpdateRequestDto wish);
+  Task<WishResponseDto> Get(Guid id, CancellationToken ct = default);
+  Task<List<WishResponseDto>> GetByWishlistId(Guid wishlistId, CancellationToken ct = default);
+  Task<WishResponseDto> Create(WishCreateRequestDto wish, CancellationToken ct = default);
+  Task<WishResponseDto> Update(WishUpdateRequestDto wish, CancellationToken ct = default);
 }
