@@ -29,6 +29,7 @@ builder.Services.AddDbContext<WishioContext>(options =>
 builder.Services.AddScoped<IWishlistService, WishlistService>();
 builder.Services.AddScoped<IWishService, WishService>();
 builder.Services.AddScoped<IPictureService, PictureService>();
+builder.Services.AddScoped<IThemeService, ThemeService>();
 
 // Register repositories
 builder.Services.AddScoped<IWishlistRepository, WishlistRepository>();
