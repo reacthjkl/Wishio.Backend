@@ -9,23 +9,10 @@ public class WishioContext : DbContext
   public virtual DbSet<Wish> Wishes { get; set; }
   public virtual DbSet<Picture> Pictures { get; set; }
 
-  public WishioContext()
+  public WishioContext(DbContextOptions<WishioContext> options)
+    : base(options)
   {
   }
-
-  public WishioContext(DbContextOptions<WishioContext> options) : base(options)
-  {
-  }
-
-  private static string GetPath()
-  {
-    var folder = Environment.SpecialFolder.LocalApplicationData;
-    var path = Environment.GetFolderPath(folder);
-    return Path.Join(path, "wishio.db");
-  }
-
-  protected override void OnConfiguring(DbContextOptionsBuilder options)
-    => options.UseSqlite($"Data Source={GetPath()}");
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {

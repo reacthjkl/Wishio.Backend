@@ -1,7 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using Wishio.Business.Interfaces;
 using Wishio.Business.MappingProfiles;
 using Wishio.Business.Services;
-using Wishio.Persistance;
 using Wishio.Persistence;
 using Wishio.Persistence.Interfaces;
 using Wishio.Persistence.Repositories;
@@ -19,7 +19,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Setup entity framework 
-builder.Services.AddDbContext<WishioContext>((options) => options.EnableSensitiveDataLogging(true));
+builder.Services.AddDbContext<WishioContext>(options =>
+{
+    options.EnableSensitiveDataLogging(true);
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
 // Register application services
 builder.Services.AddScoped<IWishlistService, WishlistService>();

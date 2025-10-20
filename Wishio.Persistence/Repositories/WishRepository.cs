@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Wishio.Persistance;
 using Wishio.Persistence.Entities;
 using Wishio.Persistence.Interfaces;
 
