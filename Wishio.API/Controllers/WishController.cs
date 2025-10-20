@@ -53,15 +53,13 @@ public class WishController(IWishService wishService) : ControllerBase
         }
     }
 
-    //todo: allow only reserve = true update
-    [HttpPut("{id:guid}")]
-    public async Task<ActionResult<ResponseDto<WishResponseDto>>> Update(Guid id, [FromBody] WishUpdateRequestDto wish,
-        CancellationToken ct = default)
+    [HttpPut("reserve/{id:guid}")]
+    public async Task<ActionResult<ResponseDto<WishResponseDto>>> Reserve(Guid id, CancellationToken ct = default)
     {
         try
         {
-            var updated = await wishService.Update(id, wish, ct);
-            return Ok(ResponseDto<WishResponseDto>.Success(updated));
+            await wishService.Reserve(id, ct);
+            return Ok(ResponseDto<EmptyDto>.Success());
         }
         catch (Exception e)
         {
