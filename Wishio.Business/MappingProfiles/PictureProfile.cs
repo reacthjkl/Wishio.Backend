@@ -1,12 +1,9 @@
+using AutoMapper;
+using Wishio.Business.Helpers;
+using Wishio.Contract.Dto.Picture;
 using Wishio.Persistence.Entities;
 
 namespace Wishio.Business.MappingProfiles;
-
-using AutoMapper;
-using Microsoft.AspNetCore.Http;
-using Wishio.Business.Helpers;
-using Wishio.Contract.Dto;
-using Wishio.Contract.Dto.Picture;
 
 public class PictureProfile : Profile
 {

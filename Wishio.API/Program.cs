@@ -21,7 +21,7 @@ builder.Services.AddSwaggerGen();
 // Setup entity framework 
 builder.Services.AddDbContext<WishioContext>(options =>
 {
-    options.EnableSensitiveDataLogging(true);
+    options.EnableSensitiveDataLogging();
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 

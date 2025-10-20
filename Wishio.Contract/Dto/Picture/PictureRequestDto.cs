@@ -4,5 +4,5 @@ namespace Wishio.Contract.Dto.Picture;
 
 public class PictureRequestDto
 {
-  public IFormFile File { get; set; } = null!;
+    public IFormFile File { get; set; } = null!;
 }

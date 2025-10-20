@@ -9,60 +9,63 @@ namespace Wishio.API.Controllers;
 [Route("api/[controller]")]
 public class WishController(IWishService wishService) : ControllerBase
 {
-  [HttpGet("{id:guid}")]
-  public async Task<ActionResult<ResponseDto<WishResponseDto>>> Get(Guid id, CancellationToken ct = default)
-  {
-    try
+    [HttpGet("{id:guid}")]
+    public async Task<ActionResult<ResponseDto<WishResponseDto>>> Get(Guid id, CancellationToken ct = default)
     {
-      var wishlist = await wishService.Get(id, ct);
-      return Ok(ResponseDto<WishResponseDto>.Success(wishlist));
+        try
+        {
+            var wishlist = await wishService.Get(id, ct);
+            return Ok(ResponseDto<WishResponseDto>.Success(wishlist));
+        }
+        catch (Exception e)
+        {
+            return BadRequest(ResponseDto<EmptyDto>.Fail(e.Message));
+        }
     }
-    catch (Exception e)
-    {
-      return BadRequest(ResponseDto<EmptyDto>.Fail(e.Message));
-    }
-  }
 
-  [HttpGet("by-wishlist/{wishlistId:guid}")]
-  public async Task<ActionResult<ResponseDto<List<WishResponseDto>>>> GetByWithlistId(Guid wishlistId, CancellationToken ct = default)
-  {
-    try
+    [HttpGet("by-wishlist/{wishlistId:guid}")]
+    public async Task<ActionResult<ResponseDto<List<WishResponseDto>>>> GetByWishlistId(Guid wishlistId,
+        CancellationToken ct = default)
     {
-      var wishlists = await wishService.GetByWishlistId(wishlistId, ct);
-      return Ok(ResponseDto<WishResponseDto>.SuccessList(wishlists));
+        try
+        {
+            var wishlists = await wishService.GetByWishlistId(wishlistId, ct);
+            return Ok(ResponseDto<WishResponseDto>.SuccessList(wishlists));
+        }
+        catch (Exception e)
+        {
+            return BadRequest(ResponseDto<EmptyDto>.Fail(e.Message));
+        }
     }
-    catch (Exception e)
-    {
-      return BadRequest(ResponseDto<EmptyDto>.Fail(e.Message));
-    }
-  }
 
-  [HttpPost]
-  public async Task<ActionResult<ResponseDto<WishResponseDto>>> Create([FromBody] WishCreateRequestDto wish, CancellationToken ct = default)
-  {
-    try
+    [HttpPost]
+    public async Task<ActionResult<ResponseDto<WishResponseDto>>> Create([FromBody] WishCreateRequestDto wish,
+        CancellationToken ct = default)
     {
-      var created = await wishService.Create(wish, ct);
-      return Ok(ResponseDto<WishResponseDto>.Success(created));
+        try
+        {
+            var created = await wishService.Create(wish, ct);
+            return Ok(ResponseDto<WishResponseDto>.Success(created));
+        }
+        catch (Exception e)
+        {
+            return BadRequest(ResponseDto<EmptyDto>.Fail(e.Message));
+        }
     }
-    catch (Exception e)
-    {
-      return BadRequest(ResponseDto<EmptyDto>.Fail(e.Message));
-    }
-  }
 
-  //todo: allow only reserve = true update
-  [HttpPut("{id:guid}")]
-  public async Task<ActionResult<ResponseDto<WishResponseDto>>> Update(Guid id, [FromBody] WishUpdateRequestDto wish, CancellationToken ct = default)
-  {
-    try
+    //todo: allow only reserve = true update
+    [HttpPut("{id:guid}")]
+    public async Task<ActionResult<ResponseDto<WishResponseDto>>> Update(Guid id, [FromBody] WishUpdateRequestDto wish,
+        CancellationToken ct = default)
     {
-      var updated = await wishService.Update(id, wish, ct);
-      return Ok(ResponseDto<WishResponseDto>.Success(updated));
+        try
+        {
+            var updated = await wishService.Update(id, wish, ct);
+            return Ok(ResponseDto<WishResponseDto>.Success(updated));
+        }
+        catch (Exception e)
+        {
+            return BadRequest(ResponseDto<EmptyDto>.Fail(e.Message));
+        }
     }
-    catch (Exception e)
-    {
-      return BadRequest(ResponseDto<EmptyDto>.Fail(e.Message));
-    }
-  }
 }

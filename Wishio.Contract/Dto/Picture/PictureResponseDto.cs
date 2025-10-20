@@ -2,10 +2,10 @@ namespace Wishio.Contract.Dto.Picture;
 
 public class PictureResponseDto
 {
-  public Guid Id { get; set; }
-  public byte[] BinaryData { get; set; } = [];
+    public Guid Id { get; set; }
+    public byte[] BinaryData { get; set; } = [];
 
-  public string FileName { get; set; } = null!;
-  public string ContentType { get; set; } = null!;
-  public long FileSize { get; set; }
+    public string FileName { get; set; } = null!;
+    public string ContentType { get; set; } = null!;
+    public long FileSize { get; set; }
 }

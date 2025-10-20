@@ -8,34 +8,34 @@ namespace Wishio.API.Controllers;
 [Route("api/[controller]")]
 public class PictureController(IPictureService pictureService) : ControllerBase
 {
-  [HttpGet("{id:guid}")]
-  public async Task<IActionResult> Get(Guid id, CancellationToken ct = default)
-  {
-    try
+    [HttpGet("{id:guid}")]
+    public async Task<IActionResult> Get(Guid id, CancellationToken ct = default)
     {
-      var picture = await pictureService.Get(id, ct);
+        try
+        {
+            var picture = await pictureService.Get(id, ct);
 
-      return File(picture.BinaryData, picture.ContentType, picture.FileName);
+            return File(picture.BinaryData, picture.ContentType, picture.FileName);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
-    catch (Exception ex)
-    {
-      return BadRequest(ex.Message);
-    }
-  }
 
-  [HttpPost]
-  public async Task<IActionResult> Create([FromForm] PictureRequestDto picture, CancellationToken ct = default)
-  {
+    [HttpPost]
+    public async Task<IActionResult> Create([FromForm] PictureRequestDto picture, CancellationToken ct = default)
     {
-      try
-      {
-        var result = await pictureService.Create(picture, ct);
-        return Ok(result);
-      }
-      catch (Exception ex)
-      {
-        return BadRequest(ex.Message);
-      }
+        {
+            try
+            {
+                var result = await pictureService.Create(picture, ct);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
-  }
 }
