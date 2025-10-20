@@ -2,7 +2,7 @@ using Wishio.Contract.Enums;
 
 namespace Wishio.Persistence.Entities;
 
-public class Wishlist
+public sealed class Wishlist
 {
     // Basic Info
     public Guid Id { get; set; } = Guid.NewGuid();
@@ -18,5 +18,5 @@ public class Wishlist
     public Guid? CustomThemePictureId { get; set; }
     public Picture? CustomThemePicture { get; set; }
 
-    public virtual ICollection<Wish> Wishes { get; set; } = [];
+    public ICollection<Wish> Wishes { get; set; } = [];
 }

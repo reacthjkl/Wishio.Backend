@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Wishio.Business.Interfaces;
+using Wishio.Contract.Dto;
 using Wishio.Contract.Dto.Picture;
 
 namespace Wishio.API.Controllers;
@@ -19,7 +20,7 @@ public class PictureController(IPictureService pictureService) : ControllerBase
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(ResponseDto<EmptyDto>.Fail(ex.Message));
         }
     }
 
@@ -34,7 +35,7 @@ public class PictureController(IPictureService pictureService) : ControllerBase
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(ResponseDto<EmptyDto>.Fail(ex.Message));
             }
         }
     }

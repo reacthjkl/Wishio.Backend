@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace Wishio.Business.Helpers;
 
-public class BinaryHelper
+public static class BinaryHelper
 {
     public static byte[] GetBinaryData(IFormFile file)
     {

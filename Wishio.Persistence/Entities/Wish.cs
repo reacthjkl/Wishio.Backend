@@ -11,7 +11,7 @@ public class Wish
 
     // Picture
     public Guid? PictureId { get; set; }
-    public Picture? Picture { get; set; } = null!;
+    public Picture? Picture { get; set; }
 
     // Connection to a Wishlist entity
     public Guid WishlistId { get; set; }

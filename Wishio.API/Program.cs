@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddAutoMapper(cfg => { },
+builder.Services.AddAutoMapper(_ => { },
     typeof(WishlistProfile),
     typeof(WishProfile));
 

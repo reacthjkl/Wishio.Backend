@@ -1,5 +1,3 @@
 namespace Wishio.Contract.Dto;
 
-public class EmptyDto
-{
-}
+public abstract record EmptyDto;
