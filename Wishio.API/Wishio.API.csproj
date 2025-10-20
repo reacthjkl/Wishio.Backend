@@ -22,4 +22,8 @@
         <ProjectReference Include="..\Wishio.Contract\Wishio.Contract.csproj"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <_ContentIncludedByDefault Remove="Scripts\Wishio\bruno.json"/>
+    </ItemGroup>
+
 </Project>
