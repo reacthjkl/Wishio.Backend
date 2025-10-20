@@ -1,40 +1,13 @@
-using Microsoft.EntityFrameworkCore;
-using Wishio.Business.Interfaces;
-using Wishio.Business.MappingProfiles;
-using Wishio.Business.Services;
-using Wishio.Persistence;
-using Wishio.Persistence.Interfaces;
-using Wishio.Persistence.Repositories;
+using Wishio.API;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
-
-builder.Services.AddAutoMapper(_ => { },
-    typeof(WishlistProfile),
-    typeof(WishProfile));
-
-// Swagger configuration
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-// Setup entity framework 
-builder.Services.AddDbContext<WishioContext>(options =>
-{
-    options.EnableSensitiveDataLogging();
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
-
-// Register application services
-builder.Services.AddScoped<IWishlistService, WishlistService>();
-builder.Services.AddScoped<IWishService, WishService>();
-builder.Services.AddScoped<IPictureService, PictureService>();
-builder.Services.AddScoped<IThemeService, ThemeService>();
-
-// Register repositories
-builder.Services.AddScoped<IWishlistRepository, WishlistRepository>();
-builder.Services.AddScoped<IWishRepository, WishRepository>();
-builder.Services.AddScoped<IPictureRepository, PictureRepository>();
+AppSetup.SetupAutoMapper(builder);
+AppSetup.SetupSwagger(builder);
+AppSetup.SetupEntityFramework(builder);
+AppSetup.SetupServices(builder);
+AppSetup.SetupRepositories(builder);
+AppSetup.SetupControllers(builder);
 
 var app = builder.Build();
 
