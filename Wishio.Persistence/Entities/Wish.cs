@@ -1,4 +1,4 @@
-namespace Wishio.Persistance.Entities;
+namespace Wishio.Persistence.Entities;
 
 public class Wish
 {

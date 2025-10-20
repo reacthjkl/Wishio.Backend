@@ -5,14 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Wishio.Persistance;
+using Wishio.Persistence;
 
 #nullable disable
 
 namespace Wishio.Persistance.Migrations
 {
     [DbContext(typeof(WishioContext))]
-    [Migration("20251019162002_AddWishlist")]
-    partial class AddWishlist
+    [Migration("20251019161849_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,7 +21,7 @@ namespace Wishio.Persistance.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.10");
 
-            modelBuilder.Entity("Wishio.Persistance.Entities.Wishlist", b =>
+            modelBuilder.Entity("Wishio.Persistence.Entities.Wishlist", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -33,7 +34,7 @@ namespace Wishio.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Wishlists");
+                    b.ToTable("Wishlist");
                 });
 #pragma warning restore 612, 618
         }

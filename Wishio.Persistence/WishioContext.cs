@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Wishio.Persistance.Entities;
+using Wishio.Persistence.Entities;
 
-namespace Wishio.Persistance;
+namespace Wishio.Persistence;
 
 public class WishioContext : DbContext
 {

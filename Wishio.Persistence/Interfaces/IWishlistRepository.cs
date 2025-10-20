@@ -1,6 +1,6 @@
-using Wishio.Persistance.Entities;
+using Wishio.Persistence.Entities;
 
-namespace Wishio.Persistance.Interfaces;
+namespace Wishio.Persistence.Interfaces;
 
 public interface IWishlistRepository
 {

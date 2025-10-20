@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using Wishio.Persistance.Entities;
-using Wishio.Persistance.Interfaces;
+using Wishio.Persistence.Entities;
+using Wishio.Persistence.Interfaces;
 
-namespace Wishio.Persistance.Repositories;
+namespace Wishio.Persistence.Repositories;
 
 public class WishlistRepository(WishioContext context) : IWishlistRepository
 {

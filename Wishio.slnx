@@ -2,5 +2,5 @@
   <Project Path="Wishio.API/Wishio.API.csproj" />
   <Project Path="Wishio.Business/Wishio.Business.csproj" />
   <Project Path="Wishio.Contract/Wishio.Contract.csproj" />
-  <Project Path="Wishio.Persistance/Wishio.Persistance.csproj" />
+  <Project Path="Wishio.Persistence\Wishio.Persistence.csproj" />
 </Solution>

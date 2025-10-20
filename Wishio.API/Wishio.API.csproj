@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Wishio.Business\Wishio.Business.csproj" />
-    <ProjectReference Include="..\Wishio.Persistance\Wishio.Persistance.csproj" />
+    <ProjectReference Include="..\Wishio.Persistence\Wishio.Persistence.csproj" />
     <ProjectReference Include="..\Wishio.Contract\Wishio.Contract.csproj" />
   </ItemGroup>
 

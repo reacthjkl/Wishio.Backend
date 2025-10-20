@@ -1,8 +1,8 @@
 using AutoMapper;
 using Wishio.Business.Interfaces;
 using Wishio.Contract.Dto.Wish;
-using Wishio.Persistance.Entities;
-using Wishio.Persistance.Interfaces;
+using Wishio.Persistence.Entities;
+using Wishio.Persistence.Interfaces;
 
 namespace Wishio.Business.Services;
 

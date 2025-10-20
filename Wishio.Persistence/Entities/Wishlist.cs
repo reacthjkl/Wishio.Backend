@@ -1,6 +1,6 @@
 using Wishio.Contract.Enums;
 
-namespace Wishio.Persistance.Entities;
+namespace Wishio.Persistence.Entities;
 
 public class Wishlist
 {

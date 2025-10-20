@@ -2,8 +2,9 @@ using Wishio.Business.Interfaces;
 using Wishio.Business.MappingProfiles;
 using Wishio.Business.Services;
 using Wishio.Persistance;
-using Wishio.Persistance.Interfaces;
-using Wishio.Persistance.Repositories;
+using Wishio.Persistence;
+using Wishio.Persistence.Interfaces;
+using Wishio.Persistence.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 

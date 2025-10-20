@@ -5,14 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Wishio.Persistance;
+using Wishio.Persistence;
 
 #nullable disable
 
 namespace Wishio.Persistance.Migrations
 {
     [DbContext(typeof(WishioContext))]
-    [Migration("20251019175420_WishIsReserved")]
-    partial class WishIsReserved
+    [Migration("20251019190429_NewGuidGeneration")]
+    partial class NewGuidGeneration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,22 +21,23 @@ namespace Wishio.Persistance.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.10");
 
-            modelBuilder.Entity("Wishio.Persistance.Entities.Picture", b =>
+            modelBuilder.Entity("Wishio.Persistence.Entities.Picture", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
-                        .HasDefaultValueSql("newid()");
+                        .HasColumnType("TEXT");
 
                     b.Property<byte[]>("BinaryData")
                         .IsRequired()
                         .HasColumnType("BLOB");
 
                     b.Property<string>("ContentType")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("FileName")
+                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("TEXT");
 
@@ -47,12 +49,11 @@ namespace Wishio.Persistance.Migrations
                     b.ToTable("Pictures");
                 });
 
-            modelBuilder.Entity("Wishio.Persistance.Entities.Wish", b =>
+            modelBuilder.Entity("Wishio.Persistence.Entities.Wish", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
-                        .HasDefaultValueSql("newid()");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
                         .HasMaxLength(2000)
@@ -87,12 +88,11 @@ namespace Wishio.Persistance.Migrations
                     b.ToTable("Wishes");
                 });
 
-            modelBuilder.Entity("Wishio.Persistance.Entities.Wishlist", b =>
+            modelBuilder.Entity("Wishio.Persistence.Entities.Wishlist", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
-                        .HasDefaultValueSql("newid()");
+                        .HasColumnType("TEXT");
 
                     b.Property<Guid?>("CustomThemePictureId")
                         .HasColumnType("TEXT");
@@ -121,13 +121,13 @@ namespace Wishio.Persistance.Migrations
                     b.ToTable("Wishlists");
                 });
 
-            modelBuilder.Entity("Wishio.Persistance.Entities.Wish", b =>
+            modelBuilder.Entity("Wishio.Persistence.Entities.Wish", b =>
                 {
-                    b.HasOne("Wishio.Persistance.Entities.Picture", "Picture")
+                    b.HasOne("Wishio.Persistence.Entities.Picture", "Picture")
                         .WithMany()
                         .HasForeignKey("PictureId");
 
-                    b.HasOne("Wishio.Persistance.Entities.Wishlist", "Wishlist")
+                    b.HasOne("Wishio.Persistence.Entities.Wishlist", "Wishlist")
                         .WithMany("Wishes")
                         .HasForeignKey("WishlistId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -138,13 +138,13 @@ namespace Wishio.Persistance.Migrations
                     b.Navigation("Wishlist");
                 });
 
-            modelBuilder.Entity("Wishio.Persistance.Entities.Wishlist", b =>
+            modelBuilder.Entity("Wishio.Persistence.Entities.Wishlist", b =>
                 {
-                    b.HasOne("Wishio.Persistance.Entities.Picture", "CustomThemePicture")
+                    b.HasOne("Wishio.Persistence.Entities.Picture", "CustomThemePicture")
                         .WithMany()
                         .HasForeignKey("CustomThemePictureId");
 
-                    b.HasOne("Wishio.Persistance.Entities.Picture", "Picture")
+                    b.HasOne("Wishio.Persistence.Entities.Picture", "Picture")
                         .WithMany()
                         .HasForeignKey("PictureId");
 
@@ -153,7 +153,7 @@ namespace Wishio.Persistance.Migrations
                     b.Navigation("Picture");
                 });
 
-            modelBuilder.Entity("Wishio.Persistance.Entities.Wishlist", b =>
+            modelBuilder.Entity("Wishio.Persistence.Entities.Wishlist", b =>
                 {
                     b.Navigation("Wishes");
                 });
