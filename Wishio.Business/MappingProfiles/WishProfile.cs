@@ -10,6 +10,5 @@ public class WishProfile : Profile
     {
         CreateMap<Wish, WishResponseDto>();
         CreateMap<WishCreateRequestDto, Wish>();
-        CreateMap<WishUpdateRequestDto, Wish>();
     }
 }
