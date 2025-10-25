@@ -7,6 +7,7 @@ AppSetup.SetupSwagger(builder);
 AppSetup.SetupEntityFramework(builder);
 AppSetup.SetupServices(builder);
 AppSetup.SetupRepositories(builder);
+AppSetup.SetupCORS(builder);
 AppSetup.SetupControllers(builder);
 
 var app = builder.Build();
@@ -19,6 +20,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(app.Environment.IsDevelopment() ? "Localhost" : "Prod");
 
 app.MapControllers();
 

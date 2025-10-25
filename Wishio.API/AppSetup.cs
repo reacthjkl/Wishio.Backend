@@ -52,4 +52,26 @@ public static class AppSetup
     {
         builder.Services.AddControllers();
     }
+
+    public static void SetupCORS(WebApplicationBuilder builder)
+    {
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("Prod",
+                b =>
+                {
+                    b.WithOrigins("") //adjust prod fronend url
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .Build();
+                });
+            options.AddPolicy("Localhost",
+                b =>
+                {
+                    b.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                });
+        });
+    }
 }

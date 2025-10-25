@@ -27,16 +27,14 @@ public class PictureController(IPictureService pictureService) : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create([FromForm] PictureRequestDto picture, CancellationToken ct = default)
     {
+        try
         {
-            try
-            {
-                var result = await pictureService.Create(picture, ct);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ResponseDto<EmptyDto>.Fail(ex.Message));
-            }
+            var result = await pictureService.Create(picture, ct);
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ResponseDto<EmptyDto>.Fail(ex.Message));
         }
     }
 }
